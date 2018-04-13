@@ -23,7 +23,7 @@ class TelegramBotAdminSettingsForm extends ConfigFormBase {
   protected $telegramBotManager;
 
   /**
-   * Constructs a new UpdateSettingsForm.
+   * Constructs a new TelegramBotAdminSettingsForm.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The factory for configuration objects.

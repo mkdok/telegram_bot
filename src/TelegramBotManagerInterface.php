@@ -13,7 +13,7 @@ interface TelegramBotManagerInterface {
    * @param string $bot_token
    *   Telegram bot token.
    */
-  public function connect(string $bot_token = '');
+  public function connect(string $bot_token = NULL);
 
   /**
    * Send message by telegram bot.
