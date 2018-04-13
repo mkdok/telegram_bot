@@ -1,0 +1,4 @@
+services:
+  telegram_bot.manager:
+    class: Drupal\telegram_bot\TelegramBotManager
+    arguments: ['@config.factory', '@logger.factory']
