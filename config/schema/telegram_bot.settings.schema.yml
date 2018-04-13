@@ -1,0 +1,30 @@
+telegram_bot.settings:
+  type: config_object
+  label : 'Telegram bot settings'
+  mapping:
+    name:
+      type: string
+      label: 'Bot username'
+    token:
+      type: string
+      label: 'Bot access_token'
+    notification:
+      type: mapping
+      label: Notification settingss
+      mapping:
+        entities:
+          type: sequence
+          label: Entities
+          sequence:
+            type: sequence
+            label: Entity type
+            sequence:
+              type: mapping
+              label: Bundle
+              mapping:
+                enable:
+                  type: bool
+                  label: 'Enabled/disabled'
+                text:
+                  type: string
+                  label: 'Notification text'
