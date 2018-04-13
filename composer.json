@@ -12,6 +12,6 @@
   },
   "require": {
     "php": ">=5.5",
-    "longman/telegram-bot": "*"
+    "longman/telegram-bot": "0.53.0"
   }
 }

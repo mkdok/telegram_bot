@@ -75,4 +75,53 @@ class TelegramBotManager implements TelegramBotManagerInterface {
     return $result->isOk();
   }
 
+  /**
+   * Send messages.
+   *
+   * @param string $message
+   *   The message.
+   *
+   * @throws TelegramException
+   */
+  public function sendMessages(string $message) {
+    $result = $this->getAllChatsIds();
+    if (!empty($result)) {
+      $chat_ids = explode(',', $result);
+      foreach ($chat_ids as $chat_id) {
+        $this->sendMessage($message, $chat_id);
+      }
+    }
+  }
+
+  /**
+   * Get all chat ids.
+   *
+   * @return string
+   *   All chat ids.
+   *
+   * @throws TelegramException
+   */
+  protected function getAllChatsIds() {
+    $result = \Drupal::state()->get('telegram_bot.chat_ids');
+    if (!empty($result)) {
+      return $result;
+    }
+    // Connect to telegram bot.
+    $telegram = $this->connect();
+    // Get all chat data.
+    $telegram->useGetUpdatesWithoutDatabase();
+    $data = $telegram->handleGetUpdates();
+    $chat_ids = [];
+    foreach ($data->getResult() as $value) {
+      $chat_ids[] = $value
+        ->getMessage()
+        ->getChat()
+        ->getId();
+    }
+    $result = implode(',', $chat_ids);
+    \Drupal::state()->set('telegram_bot.chat_ids', $result);
+
+    return $result;
+  }
+
 }
