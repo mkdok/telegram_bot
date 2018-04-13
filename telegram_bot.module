@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains telegram_bot.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function telegram_bot_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the telegram_bot module.
+    case 'help.page.telegram_bot':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Telegram Bot functional') . '</p>';
+      return $output;
+
+    default:
+  }
+}

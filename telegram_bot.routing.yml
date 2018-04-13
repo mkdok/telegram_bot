@@ -1,0 +1,7 @@
+telegram_bot.admin_settings_form:
+  path: '/admin/config/system/telegram-bot'
+  defaults:
+    _form: '\Drupal\telegram_bot\Form\TelegramBotAdminSettingsForm'
+    _title: 'Telegram Bot'
+  requirements:
+    _permission: 'administer telegram bot'

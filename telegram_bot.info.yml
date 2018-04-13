@@ -1,0 +1,5 @@
+name: Telegram Bot
+type: module
+description: Telegram Bot functional
+core: 8.x
+package: Telegram
