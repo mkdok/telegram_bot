@@ -13,7 +13,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class TelegramBotNotificationSettingsForm extends ConfigFormBase {
 
-
   /**
    * Drupal\Core\Entity\EntityTypeManager definition.
    *
