@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains telegram_bot_log.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function telegram_bot_log_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the telegram_bot_log module.
+    case 'help.page.telegram_bot_log':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provides logging for Telegram Bot.') . '</p>';
+      return $output;
+
+    default:
+  }
+}

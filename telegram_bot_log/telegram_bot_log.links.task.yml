@@ -1,0 +1,10 @@
+entity.telegram_bot_log.canonical:
+  route_name: entity.telegram_bot_log.canonical
+  base_route: entity.telegram_bot_log.canonical
+  title: 'View'
+
+entity.telegram_bot_log.delete_form:
+  route_name:  entity.telegram_bot_log.delete_form
+  base_route:  entity.telegram_bot_log.canonical
+  title: Delete
+  weight: 10

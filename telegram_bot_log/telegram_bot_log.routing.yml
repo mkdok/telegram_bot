@@ -1,0 +1,23 @@
+entity.telegram_bot_log.canonical:
+  path: '/admin/reports/telegram-bot-log/{telegram_bot_log}'
+  defaults:
+    _entity_view: 'telegram_bot_log'
+    _title: 'Telegram Bot Log'
+  requirements:
+    _entity_access: 'telegram_bot_log.view'
+
+entity.telegram_bot_log.delete_form:
+  path: '/admin/reports/telegram-bot-log/{telegram_bot_log}/delete'
+  defaults:
+    _entity_form: 'telegram_bot_log.delete'
+    _title: 'Delete Telegram Bot Log'
+  requirements:
+    _entity_access: 'telegram_bot_log.delete'
+
+entity.telegram_bot_log.collection:
+  path: '/admin/reports/telegram-bot-log'
+  defaults:
+    _entity_list: 'telegram_bot_log'
+    _title: 'Telegram Bot Logs'
+  requirements:
+    _permission: 'view telegram bot log entities'

@@ -1,0 +1,7 @@
+name: 'Telegram Bot Log'
+type: module
+description: 'Provides logging for Telegram Bot.'
+core: 8.x
+package: 'Telegram'
+dependencies:
+  - telegram_bot
