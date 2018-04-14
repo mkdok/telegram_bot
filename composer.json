@@ -10,5 +10,8 @@
     "issues": "https://www.drupal.org/project/issues/telegram_bot",
     "source": "http://cgit.drupalcode.org/telegram_bot"
   },
-  "require": { }
+  "require": {
+    "php": ">=5.5",
+    "longman/telegram-bot": "0.53.0"
+  }
 }

@@ -3,3 +3,5 @@ type: module
 description: Telegram Bot functional
 core: 8.x
 package: Telegram
+
+configure: telegram_bot.notification_settings_form

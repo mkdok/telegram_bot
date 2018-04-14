@@ -2,15 +2,50 @@
 
 namespace Drupal\telegram_bot\Form;
 
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Config\DatabaseStorage;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
+use Drupal\Core\Site\Settings;
 use Drupal\Core\Url;
+use Drupal\telegram_bot\TelegramBotManagerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Configure Telegram Bot settings for this site.
  */
 class TelegramBotAdminSettingsForm extends ConfigFormBase {
+
+  /**
+   * The telegram bot manager.
+   *
+   * @var \Drupal\telegram_bot\TelegramBotManagerInterface
+   */
+  protected $telegramBotManager;
+
+  /**
+   * Constructs a new TelegramBotAdminSettingsForm.
+   *
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The factory for configuration objects.
+   * @param \Drupal\telegram_bot\TelegramBotManagerInterface $telegram_bot_manager
+   *   The telegram bot manager service.
+   */
+  public function __construct(ConfigFactoryInterface $config_factory, TelegramBotManagerInterface $telegram_bot_manager) {
+    parent::__construct($config_factory);
+    $this->telegramBotManager = $telegram_bot_manager;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('config.factory'),
+      $container->get('telegram_bot.manager')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -65,6 +100,9 @@ class TelegramBotAdminSettingsForm extends ConfigFormBase {
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
     parent::validateForm($form, $form_state);
+    if (!$this->telegramBotManager->connect($form_state->getValue('telegram_bot_token'))) {
+      $form_state->setErrorByName('telegram_bot_token', $this->t('The telegram bot token is invalid.'));
+    }
   }
 
   /**

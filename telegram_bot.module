@@ -6,6 +6,8 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_help().
@@ -20,5 +22,21 @@ function telegram_bot_help($route_name, RouteMatchInterface $route_match) {
       return $output;
 
     default:
+  }
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+function telegram_bot_entity_insert(EntityInterface $entity) {
+  $entity_type = $entity->getEntityTypeId();
+  $entity_bundle = $entity->bundle();
+  $config = \Drupal::config('telegram_bot.settings');
+  $notification_entities = $config->get('notification.entities');
+  if (!empty($notification_entities[$entity_type][$entity_bundle]['enable'])) {
+    $message = $notification_entities[$entity_type][$entity_bundle]['text'];
+    $options = ['absolute' => TRUE];
+    $url_object = Url::fromRoute('entity.node.canonical', ['node' => $entity->id()], $options)->toString();
+    \Drupal::service('telegram_bot.manager')->sendMessages($message . ' : ' . $url_object);
   }
 }
