@@ -32,4 +32,26 @@ interface TelegramBotLogInterface extends ContentEntityInterface, EntityOwnerInt
    */
   public function setCreatedTime($timestamp);
 
+
+  /**
+   * Sets the Telegram Bot Log request.
+   *
+   * @param string $request
+   *   The Telegram Bot Log creation timestamp.
+   *
+   * @return \Drupal\telegram_bot_log\Entity\TelegramBotLogInterface
+   *   The called Telegram Bot Log entity.
+   */
+  public function setRequest($request);
+
+  /**
+   * Sets the Telegram Bot Log response.
+   *
+   * @param string $response
+   *   The Telegram Bot Log creation timestamp.
+   *
+   * @return \Drupal\telegram_bot_log\Entity\TelegramBotLogInterface
+   *   The called Telegram Bot Log entity.
+   */
+  public function setResponse($response);
 }

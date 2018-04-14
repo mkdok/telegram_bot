@@ -95,7 +95,7 @@ class TelegramBotLog extends ContentEntityBase implements TelegramBotLogInterfac
   }
 
   /**
-   * Sets request data.
+   * {@inheritdoc}
    */
   public function setRequest($request) {
     $this->set('request', $request);
@@ -103,7 +103,7 @@ class TelegramBotLog extends ContentEntityBase implements TelegramBotLogInterfac
   }
 
   /**
-   * Sets response data.
+   * {@inheritdoc}
    */
   public function setResponse($response) {
     $this->set('response', $response);
@@ -119,6 +119,7 @@ class TelegramBotLog extends ContentEntityBase implements TelegramBotLogInterfac
     $fields['id'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('ID'))
       ->setDescription(t('The ID of the log.'))
+      ->setDisplayOptions('view', ['label' => 'above', 'type' => 'text_default', 'weight' => 0])
       ->setReadOnly(TRUE);
 
     $fields['uid'] = BaseFieldDefinition::create('entity_reference')
@@ -126,22 +127,22 @@ class TelegramBotLog extends ContentEntityBase implements TelegramBotLogInterfac
       ->setDescription(t('The user ID of author.'))
       ->setSetting('target_type', 'user')
       ->setSetting('handler', 'default')
-      ->setDisplayOptions('view', ['label' => 'above', 'type' => 'entity_reference_label', 'weight' => 0]);
+      ->setDisplayOptions('view', ['label' => 'above', 'type' => 'entity_reference_label', 'weight' => 1]);
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))
       ->setDescription(t('The time when the log was created.'))
-      ->setDisplayOptions('view', ['label' => 'above', 'type' => 'timestamp', 'weight' => 1]);
+      ->setDisplayOptions('view', ['label' => 'above', 'type' => 'timestamp', 'weight' => 2]);
 
     $fields['request'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Request'))
       ->setDescription(t('Request.'))
-      ->setDisplayOptions('view', ['label' => 'above', 'type' => 'text_default', 'weight' => 2]);
+      ->setDisplayOptions('view', ['label' => 'above', 'type' => 'text_default', 'weight' => 3]);
 
     $fields['response'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Response'))
       ->setDescription(t('Response.'))
-      ->setDisplayOptions('view', ['label' => 'above', 'type' => 'text_default', 'weight' => 3]);
+      ->setDisplayOptions('view', ['label' => 'above', 'type' => 'text_default', 'weight' => 4]);
 
     return $fields;
   }
