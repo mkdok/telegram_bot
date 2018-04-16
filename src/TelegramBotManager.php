@@ -70,8 +70,18 @@ class TelegramBotManager implements TelegramBotManagerInterface {
    * {@inheritdoc}
    */
   public function sendMessage(string $message, string $chat_id) {
+
     $this->connect();
-    $result = Request::sendMessage(['chat_id' => $chat_id, 'text' => $message]);
+    $request = ['chat_id' => $chat_id, 'text' => $message];
+    $result = Request::sendMessage($request);
+
+    if (\Drupal::moduleHandler()->moduleExists('telegram_bot_log')) {
+      $log = \Drupal::entityTypeManager()->getStorage('telegram_bot_log')->create();
+      $log->setRequest(json_encode($request));
+      $log->setResponse($result);
+      $log->save();
+    }
+
     return $result->isOk();
   }
 
